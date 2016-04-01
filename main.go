@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strconv"
+	"strings"
 	"syscall"
 	"time"
 )
@@ -19,7 +20,7 @@ var comma = regexp.MustCompile(`^\.`)
 // Options is struct of Options.
 type Options struct {
 	Output       string `short:"o" long:"output" description:"output dir" default:"output"`
-	DataDir      string `short:"d" long:"datadir" description:"Directori of datasets." default:"."`
+	DataDir      string `short:"d" long:"datadir" description:"Directory of datasets." default:"./"`
 	IsMakeTxt    bool   `short:"t" long:"txt" description:"Making summary text file"`
 	Label        string `short:"l" long:"label" description:"Label of the dataset"`
 	TextFileName string `short:"f" long:"txtfname" description:"The name of text file"`
@@ -209,7 +210,14 @@ func checkFilePath(info os.FileInfo, path string, opts *Options) (bool, error) {
 			return false, nil
 		}
 	}
-	return !(info.IsDir() || comma.MatchString(filepath.Base(path))), nil
+	splited := strings.Split(path, "/")
+	for _, v := range splited {
+		if comma.MatchString(v) {
+
+			return false, nil
+		}
+	}
+	return !info.IsDir(), nil
 }
 
 func copyFile(srcPath, dstPath string) error {
