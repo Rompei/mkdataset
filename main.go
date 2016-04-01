@@ -128,7 +128,7 @@ func walk(root string, opts *Options) error {
 	if float64(distStatus.Free-uint64(amount)) < 3e+10 {
 		return fmt.Errorf("Shortage of disk capacity.")
 	}
-	res, err := waitUserAction(fmt.Sprintf("Disk capacity will be %.2f/%.2f(GB). Do you continue? [Y/N]", float64(capPredict)/float64(GB), float64(distStatus.All)/float64(GB)))
+	res, err := waitUserAction(fmt.Sprintf("Disk capacity will be %.2f/%.2f(GB)(file num: %d). Do you continue? [Y/N]", float64(capPredict)/float64(GB), float64(distStatus.All)/float64(GB), len(paths)))
 	if err != nil {
 		return err
 	}
