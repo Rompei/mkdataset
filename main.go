@@ -18,7 +18,8 @@ var comma = regexp.MustCompile(`^\.`)
 
 // Options is struct of Options.
 type Options struct {
-	Output       string `short:"o" long:"output" description:"output dir" default:"data"`
+	Output       string `short:"o" long:"output" description:"output dir" default:"output"`
+	DataDir      string `short:"d" long:"datadir" description:"Directori of datasets." default:"."`
 	IsMakeTxt    bool   `short:"t" long:"txt" description:"Making summary text file"`
 	Label        string `short:"l" long:"label" description:"Label of the dataset"`
 	TextFileName string `short:"f" long:"txtfname" description:"The name of text file"`
@@ -63,7 +64,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = walk(".", opts)
+	err = walk(opts.DataDir, opts)
 	if err != nil {
 		err = handleError(opts)
 		if err != nil {

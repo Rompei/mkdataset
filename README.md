@@ -9,7 +9,8 @@ Usage:
   mkdataset [OPTIONS]
 
 Application Options:
-  -o, --output=   output dir (default: data)
+  -o, --output=   output dir (default: output)
+  -d, --datadir=  Directori of datasets. (default: .)
   -t, --txt       Making summary text file
   -l, --label=    Label of the dataset
   -f, --txtfname= The name of text file
@@ -17,5 +18,5 @@ Application Options:
   -s, --suffix=   Suffix of the data.
 
 Help Options:
-  -h, --help      Show this help message
+  -h, --help      Show this help messageSAGE:
 ```
