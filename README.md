@@ -1,6 +1,6 @@
 #mkdataset
 
-mkdataset creates dataset for Caffe.
+mkdataset creates dataset from files.
 
 ##Usage
 
